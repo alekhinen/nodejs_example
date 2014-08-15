@@ -5,7 +5,20 @@ var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var hbs          = require('express-hbs');
+var mongoose     = require('mongoose');
 var app          = express();
+
+// ----------------------------------------------------------------------------
+// base setup (static assets, parser, db connection) --------------------------
+
+mongoose.connect('mongodb://localhost/example_db');
+
+app.use(favicon());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // ----------------------------------------------------------------------------
 // routes ---------------------------------------------------------------------
@@ -29,16 +42,6 @@ app.engine( 'hbs', hbs.express3({
 }));
 app.set( 'view engine', 'hbs' );
 app.set( 'views', path.join(__dirname, 'views') );
-
-// ----------------------------------------------------------------------------
-// base setup (static assets, parser)
-
-app.use(favicon());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // ----------------------------------------------------------------------------
 // error handlers -------------------------------------------------------------
