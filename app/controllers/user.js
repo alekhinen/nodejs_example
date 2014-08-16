@@ -2,7 +2,7 @@ var User = require('../models/user.js');
 
 // API for User
 
-exports = {
+module.exports = {
 
   // post ---------------------------------------------------------------------
   // creates a new user and saves it to db
