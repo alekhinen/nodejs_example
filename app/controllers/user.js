@@ -44,6 +44,14 @@ module.exports = {
     }, function( err, user ) {
       res.render( 'users/show', { user: user });
     });
+  },
+
+  findById: function( id ) {
+    User.findOne({
+      _id: id
+    }, function( err, user ) {
+      return user;
+    });
   }
 
 }

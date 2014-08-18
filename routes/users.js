@@ -5,6 +5,12 @@ var API     = require('../app/controllers/user.js');
 // GET /users/ ----------------------------------------------------------------
 router.get( '/', API.list );
 
+// GET /users/user/:id/edit ---------------------------------------------------
+router.get( '/user/:id/edit', function( req, res ) {
+  console.log( API.findById( req.params.id ));
+  res.render( 'users/edit', { title: 'Edit User' });
+});
+
 // GET /users/user/:id --------------------------------------------------------
 router.get( '/user/:id', API.show );
 
