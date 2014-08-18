@@ -18,17 +18,19 @@ module.exports = {
 
     console.log( x );
 
-    res.render( 'users/list', { title: 'Successfully saved.'} );
+    res.redirect( '/users/' );
+    // res.render( 'users/list', {
+    //   title: 'Successfully saved.',
+    //   message: 'successfully saved user!'
+    // });
   },
 
   // list ---------------------------------------------------------------------
   // get a list of users from the db
   list: function( req, res ) {
     User.find( function( err, users ) {
-      console.log( users );
       res.render( 'users/list', {
         title: 'users',
-        message: 'successfully saved user!',
         users: users
       });
     });
@@ -41,7 +43,6 @@ module.exports = {
       email: req.params.email
     }, function( err, user ) {
       res.render( 'users/show', { user: user });
-      // res.send([{user: user}]);
     });
   }
 

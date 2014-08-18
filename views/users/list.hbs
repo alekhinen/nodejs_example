@@ -2,6 +2,8 @@
 {{message}}
 <ul>
   {{#each users}}
-    <li>{{name.first}} {{name.last}} - {{email}} - {{phone}}</li>
+    <li><a href="/users/user/{{_id}}">
+      {{name.first}} {{name.last}} - {{email}} - {{phone}}
+    </a></li>
   {{/each}}
 </ul>
