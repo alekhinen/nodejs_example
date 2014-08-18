@@ -1,2 +1,6 @@
 <h1>User</h1>
-{{user}}
+{{#if user}}
+  <h3>{{user.name.first}} {{user.name.last}}</h3>
+  <p>{{user.email}}</p>
+  <p>{{user.phone}}</p>
+{{/if}}

@@ -40,7 +40,7 @@ module.exports = {
   // get a single user from the db
   show: function( req, res ) {
     User.findOne({
-      email: req.params.email
+      _id: req.params.id
     }, function( err, user ) {
       res.render( 'users/show', { user: user });
     });
