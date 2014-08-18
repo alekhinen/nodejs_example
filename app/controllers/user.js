@@ -7,7 +7,7 @@ module.exports = {
   // post ---------------------------------------------------------------------
   // creates a new user and saves it to db
   post: function( req, res ) {
-    new User({
+    var x = new User({
       name: {
         first: req.body.first_name,
         last: req.body.last_name
@@ -15,13 +15,22 @@ module.exports = {
       email: req.body.email,
       phone: req.body.phone
     }).save();
+
+    console.log( x );
+
+    res.render( 'users/list', { title: 'Successfully saved.'} );
   },
 
   // list ---------------------------------------------------------------------
   // get a list of users from the db
   list: function( req, res ) {
     User.find( function( err, users ) {
-      res.send( users );
+      console.log( users );
+      res.render( 'users/list', {
+        title: 'users',
+        message: 'successfully saved user!',
+        users: users
+      });
     });
   },
 
@@ -31,7 +40,8 @@ module.exports = {
     User.findOne({
       email: req.params.email
     }, function( err, user ) {
-      res.send([{user: user}]);
+      res.render( 'users/show', { user: user });
+      // res.send([{user: user}]);
     });
   }
 
