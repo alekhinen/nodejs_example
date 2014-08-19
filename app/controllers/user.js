@@ -43,8 +43,9 @@ module.exports = {
     }).save( function (err, user, numberAffected) {
       if ( err ) {
         res.send( err );
+      } else {
+        res.redirect( '/users/user/' + user._id );
       }
-      res.redirect( '/users/user/' + user._id );
     });
   },
 
@@ -56,8 +57,9 @@ module.exports = {
     }, function (err, user) {
       if ( err ) {
         res.send( err );
+      } else {
+        res.render( 'users/edit', { title: 'Edit User', user: user });
       }
-      res.render( 'users/edit', { title: 'Edit User', user: user });
     });
   },
 
@@ -77,9 +79,9 @@ module.exports = {
         user.save( function( err ) {
           if ( err ) {
             res.send( err );
+          } else {
+            res.redirect( '/users/user/' + user._id );
           }
-
-          res.redirect( '/users/user/' + user._id );
         });
       }
     })
