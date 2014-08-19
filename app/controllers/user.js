@@ -76,6 +76,15 @@ module.exports = {
     }, function( err, user ) {
       res.render( 'users/edit', { title: 'Edit User', user: user });
     });
+  },
+
+  // destroy ------------------------------------------------------------------
+  destroy: function( req, res ) {
+    User.find({ _id: req.params.id }).remove( function() {
+      console.log('successfully removed user');
+      res.redirect( '/users/' );
+    });
+
   }
 
 }

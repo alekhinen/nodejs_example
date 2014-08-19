@@ -8,6 +8,10 @@ router.get( '/', API.list );
 // GET /users/user/:id/edit ---------------------------------------------------
 router.get( '/user/:id/edit', API.edit );
 
+// POST /users/user/:id/delete ------------------------------------------------
+// TODO: should this be a POST or a GET?
+router.get( '/user/:id/delete', API.destroy );
+
 // GET /users/user/:id --------------------------------------------------------
 router.get( '/user/:id', API.show );
 
