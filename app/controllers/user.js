@@ -42,7 +42,20 @@ module.exports = {
       phone: req.body.phone
     }).save( function (err, user, numberAffected) {
       if ( err ) {
-        res.send( err );
+        console.log( err );
+        res.render( 'users/new', {
+          submitted: {
+            name: {
+              first: req.body.first_name,
+              last: req.body.last_name
+            },
+            email: req.body.email,
+            phone: req.body.phone
+          },
+          // TODO: error message for names is set to strings `name.first`
+          //       & `name.last`, which is impossible to use for hbs templates.
+          err: err
+        });
       } else {
         res.redirect( '/users/user/' + user._id );
       }
