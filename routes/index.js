@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+// reroute index to users list page (for now)
+router.get('/', function( req, res ) {
+  res.redirect( '/users/' );
 });
 
 module.exports = router;

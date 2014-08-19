@@ -12,6 +12,9 @@ router.get( '/user/:id/edit', API.edit );
 // TODO: should this be a POST or a GET?
 router.get( '/user/:id/delete', API.destroy );
 
+// POST /users/:id/update -----------------------------------------------------
+router.post ( '/user/:id/update', API.put );
+
 // GET /users/user/:id --------------------------------------------------------
 router.get( '/user/:id', API.show );
 

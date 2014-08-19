@@ -7,7 +7,7 @@ module.exports = {
   // list ---------------------------------------------------------------------
   // get a list of users from the db
   list: function( req, res ) {
-    User.find( function( err, users ) {
+    User.find( function (err, users) {
       res.render( 'users/list', {
         title: 'users',
         users: users
@@ -17,74 +17,80 @@ module.exports = {
 
   // show ---------------------------------------------------------------------
   // get a single user from the db
-  show: function( req, res ) {
+  show: function (req, res) {
     User.findOne({
       _id: req.params.id
-    }, function( err, user ) {
-      res.render( 'users/show', { user: user });
+    }, function (err, user) {
+      res.render( 'users/show', { title: user.name.first, user: user });
     });
   },
 
   // new ----------------------------------------------------------------------
-  new: function( req, res ) {
+  new: function (req, res) {
     res.render( 'users/new', { title: 'New User' });
   },
 
   // post ---------------------------------------------------------------------
   // creates a new user and saves it to db
-  post: function( req, res ) {
-    User.findOne({
-      _id: req.body.id
-    }, function( err, user ) {
-
+  post: function (req, res) {
+    new User({
+      name: {
+        first: req.body.first_name,
+        last: req.body.last_name
+      },
+      email: req.body.email,
+      phone: req.body.phone
+    }).save( function (err, user, numberAffected) {
       if ( err ) {
-        console.log( err );
+        res.send( err );
+      }
+      res.redirect( '/users/user/' + user._id );
+    });
+  },
 
-      } else if ( user ) {
+  // edit ---------------------------------------------------------------------
+  // edit a user
+  edit: function (req, res) {
+    User.findOne({
+      _id: req.params.id
+    }, function (err, user) {
+      if ( err ) {
+        res.send( err );
+      }
+      res.render( 'users/edit', { title: 'Edit User', user: user });
+    });
+  },
+
+  // put ----------------------------------------------------------------------
+  // updates a user
+  put: function (req, res) {
+    User.findOne({
+      _id: req.params.id
+    }, function (err, user) {
+      if ( err ) {
+        res.send( err );
+      } else {
         user.name.first = req.body.first_name;
         user.name.last = req.body.last_name;
         user.email = req.body.email;
         user.phone = req.body.phone;
         user.save( function( err ) {
           if ( err ) {
-            return handleError( err );
+            res.send( err );
           }
+
+          res.redirect( '/users/user/' + user._id );
         });
-
-      } else {
-        new User({
-          name: {
-            first: req.body.first_name,
-            last: req.body.last_name
-          },
-          email: req.body.email,
-          phone: req.body.phone
-        }).save();
-
       }
-
-    });
-
-    res.redirect( '/users/' );
-  },
-
-  // edit ---------------------------------------------------------------------
-  // edit a user
-  edit: function( req, res ) {
-    User.findOne({
-      _id: req.params.id
-    }, function( err, user ) {
-      res.render( 'users/edit', { title: 'Edit User', user: user });
-    });
+    })
   },
 
   // destroy ------------------------------------------------------------------
-  destroy: function( req, res ) {
-    User.find({ _id: req.params.id }).remove( function() {
+  destroy: function (req, res) {
+    User.find({ _id: req.params.id }).remove( function () {
       console.log('successfully removed user');
       res.redirect( '/users/' );
     });
-
   }
 
 }
