@@ -6,18 +6,13 @@ var API     = require('../app/controllers/user.js');
 router.get( '/', API.list );
 
 // GET /users/user/:id/edit ---------------------------------------------------
-router.get( '/user/:id/edit', function( req, res ) {
-  console.log( API.findById( req.params.id ));
-  res.render( 'users/edit', { title: 'Edit User' });
-});
+router.get( '/user/:id/edit', API.edit );
 
 // GET /users/user/:id --------------------------------------------------------
 router.get( '/user/:id', API.show );
 
 // GET /users/new -------------------------------------------------------------
-router.get( '/new', function( req, res ) {
-  res.render( 'users/new', { title: 'New User' });
-});
+router.get( '/new', API.new );
 
 // POST /users/new ------------------------------------------------------------
 router.post( '/new', API.post );

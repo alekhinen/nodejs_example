@@ -4,27 +4,6 @@ var User = require('../models/user.js');
 
 module.exports = {
 
-  // post ---------------------------------------------------------------------
-  // creates a new user and saves it to db
-  post: function( req, res ) {
-    var x = new User({
-      name: {
-        first: req.body.first_name,
-        last: req.body.last_name
-      },
-      email: req.body.email,
-      phone: req.body.phone
-    }).save();
-
-    console.log( x );
-
-    res.redirect( '/users/' );
-    // res.render( 'users/list', {
-    //   title: 'Successfully saved.',
-    //   message: 'successfully saved user!'
-    // });
-  },
-
   // list ---------------------------------------------------------------------
   // get a list of users from the db
   list: function( req, res ) {
@@ -46,11 +25,56 @@ module.exports = {
     });
   },
 
-  findById: function( id ) {
+  // new ----------------------------------------------------------------------
+  new: function( req, res ) {
+    res.render( 'users/new', { title: 'New User' });
+  },
+
+  // post ---------------------------------------------------------------------
+  // creates a new user and saves it to db
+  post: function( req, res ) {
     User.findOne({
-      _id: id
+      _id: req.body.id
     }, function( err, user ) {
-      return user;
+
+      if ( err ) {
+        console.log( err );
+
+      } else if ( user ) {
+        user.name.first = req.body.first_name;
+        user.name.last = req.body.last_name;
+        user.email = req.body.email;
+        user.phone = req.body.phone;
+        user.save( function( err ) {
+          if ( err ) {
+            return handleError( err );
+          }
+        });
+
+      } else {
+        new User({
+          name: {
+            first: req.body.first_name,
+            last: req.body.last_name
+          },
+          email: req.body.email,
+          phone: req.body.phone
+        }).save();
+
+      }
+
+    });
+
+    res.redirect( '/users/' );
+  },
+
+  // edit ---------------------------------------------------------------------
+  // edit a user
+  edit: function( req, res ) {
+    User.findOne({
+      _id: req.params.id
+    }, function( err, user ) {
+      res.render( 'users/edit', { title: 'Edit User', user: user });
     });
   }
 

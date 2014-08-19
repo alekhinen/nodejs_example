@@ -1,18 +1,19 @@
-<a href="/users/user/{{user._id}}">Return To User</a>
+<a href="/users/user/{{user._id}}">Return</a>
 <a href="/users/">All</a>
 <h1>Edit User</h1>
 <form method="post" action="/users/new">
   <label>First Name</label>
-  <input name="first_name" type="text" placeholder="Hank"></input>
+  <input name="first_name" type="text" placeholder="Hank" value="{{user.name.first}}"></input>
   <br>
   <label>Last Name</label>
-  <input name="last_name" type="text" placeholder="Hill"></input>
+  <input name="last_name" type="text" placeholder="Hill" value="{{user.name.last}}"></input>
   <br>
   <label>Email</label>
-  <input name="email" type="text" placeholder="hankhill@propane.biz"></input>
+  <input name="email" type="text" placeholder="hankhill@propane.biz" value="{{user.email}}"></input>
   <br>
   <label>Phone</label>
-  <input name="phone" type="text" placeholder="(555) 555-5555"></input>
+  <input name="phone" type="text" placeholder="(555) 555-5555" value="{{user.phone}}"></input>
   <br>
+  <input name="id" type="hidden" value="{{user._id}}"></input>
   <input type="submit" value="Submit"></input>
 </form>
