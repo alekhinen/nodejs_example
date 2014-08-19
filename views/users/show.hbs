@@ -3,7 +3,7 @@
 <a class="btn btn-success" href="/users/new">New</a>
 <a class="btn btn-danger" href="/users/user/{{user._id}}/delete">Delete</a>
 {{#if user}}
-  <h3>{{user.name.first}} {{user.name.last}}</h3>
+  <h3>{{user.name.full}}</h3>
   <p>{{user.email}}</p>
   <p>{{user.phone}}</p>
 {{/if}}

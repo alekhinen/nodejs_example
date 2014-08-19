@@ -35,8 +35,7 @@ module.exports = {
   post: function (req, res) {
     new User({
       name: {
-        first: req.body.first_name,
-        last: req.body.last_name
+        full: req.body.full_name
       },
       email: req.body.email,
       phone: req.body.phone
@@ -46,8 +45,7 @@ module.exports = {
         res.render( 'users/new', {
           submitted: {
             name: {
-              first: req.body.first_name,
-              last: req.body.last_name
+              full: req.body.full_name
             },
             email: req.body.email,
             phone: req.body.phone

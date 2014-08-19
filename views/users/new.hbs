@@ -5,13 +5,9 @@
   <p class="text-danger">{{this}}</p>
 {{/each}}
 <form method="post" action="/users/new" role="form">
-  <div class="form-group {{#if err.errors.name.first }} has-error {{/if}}">
-    <label class="control-label">First Name</label>
-    <input class="form-control" name="first_name" type="text" placeholder="Hank" value="{{submitted.name.first}}"></input>
-  </div>
-  <div class="form-group {{#if err.errors.name.last }} has-error {{/if}}">
-    <label class="control-label">Last Name</label>
-    <input class="form-control" name="last_name" type="text" placeholder="Hill" value="{{submitted.name.last}}"></input>
+  <div class="form-group {{#if err.errors.name.full }} has-error {{/if}}">
+    <label class="control-label">Full Name</label>
+    <input class="form-control" name="full_name" type="text" placeholder="Hank Hill" value="{{submitted.name.full}}"></input>
   </div>
   <div class="form-group {{#if err.errors.email }} has-error {{/if}}">
     <label class="control-label">Email</label>

@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
-// The User model
+// user model -----------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
+// user schema (persisted to db) ----------------------------------------------
 var userSchema = new Schema({
   name: {
     first: { type: String, min: 1, max: 30, required: true },
@@ -17,11 +19,14 @@ var userSchema = new Schema({
   created: { type: Date, default: Date.now }
 });
 
-// TODO: get this to work
-// userSchema.virtual( 'full_name' ).get( function() {
-//   return this.name.first + ' ' + this.name.last;
-// });
-// userSchema.set( 'toJSON', { virtuals: true });
-// userSchema.set( 'toObject', { virtuals: true });
+// virtual schemas ------------------------------------------------------------
+userSchema.virtual( 'name.full' ).get( function () {
+  return this.name.first + ' ' + this.name.last;
+});
+userSchema.virtual( 'name.full' ).set( function (name) {
+  var split = name.split( ' ' );
+  this.name.first = split[ 0 ];
+  this.name.last = split[ 1 ];
+});
 
 module.exports = mongoose.model( 'User', userSchema );
