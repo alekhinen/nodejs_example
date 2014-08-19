@@ -1,8 +1,7 @@
-<a href="/users/">All</a>
-<a href="/users/user/{{user._id}}/edit">Edit</a>
-<a href="/users/new">New</a>
-<a href="#">Delete</a>
-<h1>User</h1>
+<a class="btn btn-default" href="/users/">All</a>
+<a class="btn btn-primary" href="/users/user/{{user._id}}/edit">Edit</a>
+<a class="btn btn-success" href="/users/new">New</a>
+<a class="btn btn-danger" href="#">Delete</a>
 {{#if user}}
   <h3>{{user.name.first}} {{user.name.last}}</h3>
   <p>{{user.email}}</p>

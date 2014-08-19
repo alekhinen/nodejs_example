@@ -1,17 +1,21 @@
-<a href="/users/">All</a>
+<a class="btn btn-default" href="/users/">All</a>
 <h1>New User</h1>
-<form method="post" action="/users/new">
-  <label>First Name</label>
-  <input name="first_name" type="text" placeholder="Hank"></input>
-  <br>
-  <label>Last Name</label>
-  <input name="last_name" type="text" placeholder="Hill"></input>
-  <br>
-  <label>Email</label>
-  <input name="email" type="text" placeholder="hankhill@propane.biz"></input>
-  <br>
-  <label>Phone</label>
-  <input name="phone" type="text" placeholder="(555) 555-5555"></input>
-  <br>
-  <input type="submit" value="Submit"></input>
+<form method="post" action="/users/new" role="form">
+  <div class="form-group">
+    <label>First Name</label>
+    <input class="form-control" name="first_name" type="text" placeholder="Hank"></input>
+  </div>
+  <div class="form-group">
+    <label>Last Name</label>
+    <input class="form-control" name="last_name" type="text" placeholder="Hill"></input>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input class="form-control" name="email" type="text" placeholder="hankhill@propane.biz"></input>
+  </div>
+  <div class="form-group">
+    <label>Phone</label>
+    <input class="form-control" name="phone" type="text" placeholder="(555) 555-5555"></input>
+  </div>
+  <input class="btn btn-default" type="submit" value="Submit"></input>
 </form>
