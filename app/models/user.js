@@ -29,4 +29,5 @@ userSchema.virtual( 'name.full' ).set( function (name) {
   this.name.last = split[ 1 ];
 });
 
+// set and export user model --------------------------------------------------
 module.exports = mongoose.model( 'User', userSchema );

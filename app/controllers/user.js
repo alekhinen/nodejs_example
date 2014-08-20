@@ -89,7 +89,17 @@ module.exports = {
         user.phone = req.body.phone;
         user.save( function( err ) {
           if ( err ) {
-            res.send( err );
+            res.render( 'users/edit', {
+              submitted: {
+                name: {
+                  first: req.body.first_name,
+                  last: req.body.last_name
+                },
+                email: req.body.email,
+                phone: req.body.phone
+              },
+              err: err
+            });
           } else {
             res.redirect( '/users/user/' + user._id );
           }

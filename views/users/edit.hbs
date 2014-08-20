@@ -1,6 +1,9 @@
 <a class="btn btn-default" href="/users/user/{{user._id}}">Return</a>
 <a class="btn btn-default" href="/users/">All</a>
 <h1>Edit User</h1>
+
+{{err}}
+
 <form method="post" action="/users/user/{{user._id}}/update" role="form">
   <div class="form-group">
     <label>First Name</label>
